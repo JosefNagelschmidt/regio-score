@@ -54,16 +54,17 @@ profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/vn
 
 
 # setting scrapping range
-lower = 2
-upper = 3
+lower = 28
+upper = 28
 # upper = 28
-# looping over subpages of the website (718 pages) in folds
+# looping over subpages of the website 
 
 def get_items(j):
   driver.find_element_by_css_selector("#content > div > div.searchresult > div:nth-child(" + str(j) + ") > div > a").click()
   latestDownloadedFileName = getDownLoadedFileName(5)
 
   # Source file path 
+  time.sleep(3)
   source = '/Users/light/Documents/Code/Git/regio-score/data/labor_market/' + str(latestDownloadedFileName)
   renamed_source = '/Users/light/Documents/Code/Git/regio-score/data/labor_market/' + str(page) + "_" + str(j) + ".xlsx"
   os.rename(source, renamed_source) 
@@ -103,7 +104,7 @@ for page in range(lower, upper+1):
 
 # each page consists of 20 files
   if page != upper:
-    for j in range(19, 21):
+    for j in range(1, 15):
       get_items(j = j)
   elif page == upper:
     for j in range(1, 15):
